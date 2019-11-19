@@ -11,9 +11,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-@DisplayName("Junit tests")
+@DisplayName("Junit Test")
 @Tag("unit")
 public class JunitTest {
+
+
+    @BeforeEach
+    public void setupEach(TestInfo testInfo) {
+        System.out.println("============BeforeEach==============");
+        System.out.println(testInfo.getDisplayName());
+        System.out.println(testInfo.getTags());
+        System.out.println(testInfo.getTestMethod());
+    }
+
+    @AfterEach
+    public void tearDownEach() {
+        System.out.println("============AfterEach==============");
+    }
 
     final String stringTestowy = "stringTestowy";
 
