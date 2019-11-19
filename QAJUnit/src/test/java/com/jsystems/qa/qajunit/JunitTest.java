@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @DisplayName("Junit Test")
-@Tag("unit")
+@Tag("Unit Test")
 public class JunitTest {
 
 
