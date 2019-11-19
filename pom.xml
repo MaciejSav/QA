@@ -11,6 +11,7 @@
 
     <modules>
         <module>QAJUnit</module>
+        <module>QAGui</module>
     </modules>
 
     <properties>
