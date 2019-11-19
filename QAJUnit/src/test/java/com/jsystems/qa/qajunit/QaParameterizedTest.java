@@ -1,5 +1,6 @@
 package com.jsystems.qa.qajunit;
 
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -7,6 +8,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static com.google.common.truth.Truth.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class QaParameterizedTest extends ConfigJunit {
@@ -66,5 +69,38 @@ public class QaParameterizedTest extends ConfigJunit {
 
     }
 
+    @ParameterizedTest(name = "Test of Wordpress powers with value{0}")
+    @ValueSource(strings = {"1", "10000", "100000000"})
+    public void zadanie1(String text) {
+
+        String resultString = "Wordpress powers " + text + "% of the internet";
+        String expectedString = "Wordpress powers [number]% of the internet";
+
+        assertTrue(resultString.startsWith("Wordpress powers"));
+        assertTrue(resultString.endsWith("% of the internet"));
+        assertThat(resultString).matches("(Wordpress powers )\\d+(% of the internet)");
+
+        String result = resultString.replace("Wordpress powers ", "").replace("% of the internet", "");
+        int resultNumber = Integer.parseInt(result);
+        assertTrue(resultNumber > 0 );
+    }
+
+    @ParameterizedTest(name = "Test of Wordpress powers with value{0}")
+    @ValueSource(strings = {"1", "10000", "100000000"})
+    public void zadanie1False(String text) {
+
+        String resultString = "Wordpress powers " + text + "% of the internet";
+        String expectedString = "Wordpress powers [number]% of the internet";
+
+//        assertTrue(resultString.startsWith("Wordpress powers"));
+//        assertTrue(resultString.endsWith("% of the internet"));
+//        assertThat(resultString).matches("(Wordpress powers )\\d+(% of the internet)");
+        assertFalse(resultString.matches("\"(Wordpress powers )\\d+(% of the internet)"));
+
+        String result = resultString.replace("Wordpress powers ", "").replace("% of the internet", "");
+
+//        int resultNumber = Integer.parseInt(result);
+//        assertTrue(resultNumber > 0 );
+    }
 
 }
