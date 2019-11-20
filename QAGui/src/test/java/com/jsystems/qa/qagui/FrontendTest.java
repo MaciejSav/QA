@@ -1,5 +1,6 @@
 package com.jsystems.qa.qagui;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -15,6 +16,8 @@ import static com.google.common.truth.Truth.assertThat;
 import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
+@Tag("FrontTest")
 public class FrontendTest extends ConfigFrontend {
 
     @Test

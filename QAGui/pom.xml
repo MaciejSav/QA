@@ -13,7 +13,7 @@
     <artifactId>QAGui</artifactId>
 
     <properties>
-        <tags>GuiTest</tags>
+        <tags>FrontTest</tags>
     </properties>
 
     <dependencies>
