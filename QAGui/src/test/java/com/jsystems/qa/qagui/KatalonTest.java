@@ -1,20 +1,28 @@
 package com.jsystems.qa.qagui;
 
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class KatalonTest {
+
     private WebDriver driver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        driver = new FirefoxDriver();
-        baseUrl = "https://www.katalon.com/";
+//        System.setProperty("webdriver.chrome.driver", Paths.get(getClass().getClassLoader().getResource("drivers/chromedriver.exe").toURI()).toFile().getAbsolutePath());
+        driver = new ChromeDriver();
+//        baseUrl = "https://www.katalon.com/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
@@ -33,7 +41,7 @@ public class KatalonTest {
         // ERROR: Caught exception [unknown command []]
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         driver.quit();
         String verificationErrorString = verificationErrors.toString();
