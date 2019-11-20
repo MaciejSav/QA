@@ -19,10 +19,10 @@ public class ConfigFrontend {
     String fireFoxPath;
     {
         try {
-//            chromePath = Paths.get(getClass().getClassLoader().getResource("driver/chromedriver.exe")
+//            chromePath = Paths.get(getClass().getClassLoader().getResource("drivers/chromedriver.exe")
 //                    .toURI()).toFile().getAbsolutePath();
-            fireFoxPath = Paths.get(getClass().getClassLoader().getResource("driver/geckodriver.exe")
-                    .toURI()).toFile().getAbsolutePath();
+            fireFoxPath = Paths.get(getClass().getClassLoader().getResource("drivers/geckodriver.exe")
+                    .toURI()).toFile().getAbsolutePath(); // sciezka do resources -> drivers
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
