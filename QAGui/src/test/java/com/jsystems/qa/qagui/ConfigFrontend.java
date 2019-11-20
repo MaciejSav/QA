@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.net.MalformedURLException;
@@ -38,10 +39,20 @@ public class ConfigFrontend {
     public void setUpEach() throws MalformedURLException {
         setupSystemProperties();
 
-        driver = new FirefoxDriver();
+        if(Configuration.BROWSER.equals("chrome")) {
+            driver = new ChromeDriver();
+        } else {
+            driver = new FirefoxDriver();
+        }
+
+//       driver = new FirefoxDriver();
 
         setupDriver();
+
+
     }
+
+
 
     private void setUpRemote() {
         //        DesiredCapabilities cap = DesiredCapabilities.chrome();
