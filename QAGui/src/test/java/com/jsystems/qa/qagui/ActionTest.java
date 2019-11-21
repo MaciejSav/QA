@@ -1,9 +1,13 @@
 package com.jsystems.qa.qagui;
 
+import com.jsystems.qa.qagui.page.LoginPage;
 import com.jsystems.qa.qagui.page.MainWordpressPage;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 @Tag("FrontTest")
@@ -31,23 +35,23 @@ public class ActionTest extends ConfigFrontend{
     @Test
     public void actionNextTest() {
 
-        driver.get(Configuration.BASE_URL);
+        driver.navigate().to(Configuration.BASE_URL);
         MainWordpressPage mainPage = new MainWordpressPage(driver);
         mainPage.loginIcon.click();
-        loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
 
         // akcje możemy budować wielo-etapowe
         Actions action = new Actions(driver);
         action.moveToElement(loginPage.usernameInput)
-                .sendKeys(TestDataStatic.login)
-                .moveToElement(loginPage.buttonContinue)
+                .sendKeys(Configuration.LOGIN)
+                .moveToElement(loginPage.usernameButton)
                 // jak po . klikniecie Ctrl + space to rozwinie wam się lista dostępnych metod z klasy Actions
                 .click()
                 .build().perform();
 
-        passwordPage = new PasswordPage(driver);
-        passwordPage.waitForVisibilityOfElement(passwordPage.passwordInput, 15);
-        passwordPage.isContentPresent();
+        loginPage.waitForElementToBeVisible(loginPage.inputPassword, 15);
+        assertTrue(loginPage.inputPassword.isDisplayed());
+
     }
 
 
