@@ -27,6 +27,7 @@ public class FrontendTest extends ConfigFrontend {
 
     @Test
     public void frontTest() {
+
         driver.navigate().to(Configuration.BASE_URL);
         MainWordpressPage mainWordpressPage = new MainWordpressPage(driver);
         String text1 = mainWordpressPage.textElement_1.getText();
