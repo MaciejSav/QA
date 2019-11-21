@@ -45,58 +45,35 @@ public class FrontendTest extends ConfigFrontend {
 
     @Test
     public void loginTest() {
-
         driver.navigate().to(Configuration.BASE_URL);
         MainWordpressPage mainWordpressPage = new MainWordpressPage(driver);
-
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(loginIconSelector)));
-
-        wait.until(ExpectedConditions.elementToBeClickable(mainWordpressPage.loginIcon));
-
+        mainWordpressPage.waitForElementToBeVisible(By.cssSelector(loginIconSelector));
+        mainWordpressPage.waitForElementToBeClickable(mainWordpressPage.loginIcon);
         mainWordpressPage.loginIcon.click();
-
         LoginPage loginPage = new LoginPage(driver);
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(usernameOrEmailSelector)));
-
-
+        loginPage.waitForElementToBeVisible(By.id(usernameOrEmailSelector));
         loginPage.usernameInput.clear();
         loginPage.usernameInput.sendKeys(Configuration.LOGIN);
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(primaryButtonSelector)));
-
+        loginPage.waitForElementToBeClickable(By.cssSelector(primaryButtonSelector));
         loginPage.usernameButton.click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("password")));;
-
+        loginPage.waitForElementToBeClickable(By.id(passwordInputSelector));
         loginPage.inputPassword.clear();
         loginPage.inputPassword.sendKeys(Configuration.PASSWORD);
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(primaryButtonSelector)));
-
+        loginPage.waitForElementToBeClickable(By.cssSelector(primaryButtonSelector));
         loginPage.usernameButton.click();
-
         UserPage userPage = new UserPage(driver);
-
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(userAvatarSelector)));
-
+        userPage.waitForElementToBeClickable(By.cssSelector(userAvatarSelector));
         userPage.userAvatar.click();
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(userDisplayNameSelector)));
-
+        userPage.waitForElementToBeClickable(By.cssSelector(userDisplayNameSelector));
         String userDisplayNameText = userPage.userDisplayName.getText();
-
         assertThat(userDisplayNameText).isEqualTo(Configuration.LOGIN);
-
-
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(primaryButtonSelector)));
+        userPage.waitForElementToBeVisible(By.cssSelector(UserPage.primaryButtonSelector));
 
         assertTrue(userPage.saveUserDetailsButton.isDisplayed());
-        assertTrue(!userPage.saveUserDetailsButton.isEnabled());
+        assertFalse(userPage.saveUserDetailsButton.isEnabled());
 
     }
+
 
     @Test
     public void notificationTest() {
