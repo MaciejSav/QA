@@ -26,7 +26,7 @@ public class ConfigStepCucumber {
         try {
 //            chromePath = Paths.get(getClass().getClassLoader().getResource("driver/chromedriver.exe")
 //                    .toURI()).toFile().getAbsolutePath();
-            fireFoxPath = Paths.get(getClass().getClassLoader().getResource("driver/geckodriver.exe")
+            fireFoxPath = Paths.get(getClass().getClassLoader().getResource("drivers/geckodriver.exe")
                     .toURI()).toFile().getAbsolutePath();
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class ConfigStepCucumber {
 
     @Before
     public void setUpAll() {
-        System.out.println("=====================@Before Cucumber test");
+        System.out.println("=====================@Before Cucumber test========================");
         WebDriverManager.chromedriver().setup();
         setupSystemProperties();
     }
