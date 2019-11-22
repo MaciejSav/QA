@@ -111,7 +111,7 @@ public class ApiTest {
     }
 
     @Test
-    @Disabled
+//    @Disabled
     public void dbTest() {
         UserDb userDb = UserDao.getOneById(1L);
         assertThat(userDb.getName()).isEqualTo("Piotr");
@@ -141,6 +141,28 @@ public class ApiTest {
         Book book = new Book(1, "JSystems", "Szkolenia", 382, "en", "2019-11-22T09:41:54.4007");
         BookService.postBook(book, 200);
     }
+
+    @Test
+    public void getAllUsersDb() {
+        List<UserDb> userDbs = UserDao.getAllUsers();
+        System.out.println();
+        assertTrue(userDbs.size() > 0);
+    }
+
+    @Test
+    public void saveUserDb() {
+        UserDb userDb = new UserDb(6L, "Arnold", "Kowalski");
+        UserDao.saveUser(userDb);
+        
+        UserDb userdb_1 = UserDao.getOneById(6L);
+        assertTrue(userdb_1.getId().equals(userDb.getId()));
+        assertTrue(userdb_1.getName().equals(userDb.getName()));
+        assertTrue(userdb_1.getSurname().equals(userDb.getSurname()));
+
+        UserDao.deleteUser(userdb_1.getId());
+    }
+
+
 
 
 }
