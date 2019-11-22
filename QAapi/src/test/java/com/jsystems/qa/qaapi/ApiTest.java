@@ -1,13 +1,16 @@
 package com.jsystems.qa.qaapi;
 
 import com.jsystems.qa.qaapi.database.UserDao;
-import com.jsystems.qa.qaapi.model.azure.AzureAuthor;
+import com.jsystems.qa.qaapi.model.azure.author.AzureAuthor;
+import com.jsystems.qa.qaapi.model.azure.book.Book;
 import com.jsystems.qa.qaapi.model.device.User;
 import com.jsystems.qa.qaapi.model.error.ErrorResponse;
 import com.jsystems.qa.qaapi.model.user.MyUser;
 import com.jsystems.qa.qaapi.model.user.UserAzure;
 import com.jsystems.qa.qaapi.model.user.UserDb;
-import com.jsystems.qa.qaapi.service.UserService;
+import com.jsystems.qa.qaapi.service.azure.AuthorService;
+import com.jsystems.qa.qaapi.service.azure.BookService;
+import com.jsystems.qa.qaapi.service.user.UserService;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -117,7 +120,7 @@ public class ApiTest {
     @Test
     @DisplayName("Get azure authors")
     public void shouldReturnsAllAzureAuthorsList() {
-        List<AzureAuthor> azureAuthors = UserService.getAzureAuthors();
+        List<AzureAuthor> azureAuthors = AuthorService.getAzureAuthors();
 
         assertThat(azureAuthors.size()).isGreaterThan(0);
 
@@ -129,7 +132,12 @@ public class ApiTest {
         }
     }
 
-
+    @Test
+    @DisplayName("Post Book Test")
+    public void postBookTest() {
+        Book book = new Book(1, "JSystems", "Szkolenia", 382, "en", "2019-11-22T09:41:54.4007");
+        BookService.postBook(book, 200);
+    }
 
 
 }
