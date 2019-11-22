@@ -114,6 +114,8 @@ public class ApiTest {
 //    @Disabled
     public void dbTest() {
         UserDb userDb = UserDao.getOneById(1L);
+
+        System.out.println(userDb);
         assertThat(userDb.getName()).isEqualTo("Piotr");
     }
 
