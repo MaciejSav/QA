@@ -11,6 +11,7 @@
 
     <properties>
         <tags>ApiTest</tags>
+        <exTags></exTags>
     </properties>
 
     <artifactId>QAapi</artifactId>
@@ -66,7 +67,6 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-
 
 
     </dependencies>
