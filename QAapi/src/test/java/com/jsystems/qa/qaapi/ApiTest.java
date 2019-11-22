@@ -153,7 +153,7 @@ public class ApiTest {
     public void saveUserDb() {
         UserDb userDb = new UserDb(6L, "Arnold", "Kowalski");
         UserDao.saveUser(userDb);
-        
+
         UserDb userdb_1 = UserDao.getOneById(6L);
         assertTrue(userdb_1.getId().equals(userDb.getId()));
         assertTrue(userdb_1.getName().equals(userDb.getName()));
